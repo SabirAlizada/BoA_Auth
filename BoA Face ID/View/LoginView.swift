@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct LoginView: View {
+    @State private var showAlert = false
+    @State private var alertMessage = ""
+    
     var body: some View {
         ZStack {
             LoginBackgroundView()
@@ -28,7 +31,7 @@ struct LoginView: View {
                         .padding(.bottom, 40)
                     
                     Button {
-                        // action
+                        authetificateUser()
                     } label: {
                         HStack {
                             Image(systemName: "faceid")
@@ -58,6 +61,21 @@ struct LoginView: View {
                     .font(.footnote)
                     .foregroundStyle(.gray)
                     .multilineTextAlignment(.center)
+            }
+        }
+        .alert(isPresented: $showAlert) {
+            Alert(title: Text("Authentication Failed"), message: Text(alertMessage), dismissButton: .default(Text("OK")))
+        }
+    }
+    
+    private func authetificateUser() {
+        LocalAuthManager.shared.authenticateUser { success, message in
+            if success {
+                // TODO: Navigate to the dashboard
+                print("Authentification successfull. Navigate to the next screen.")
+            } else {
+                alertMessage = message ?? "Authentification failed."
+                showAlert = true
             }
         }
     }
