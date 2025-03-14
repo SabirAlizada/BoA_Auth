@@ -8,9 +8,16 @@
 import SwiftUI
 
 struct LoginView: View {
+    @StateObject private var biometryManager = BiometryManager()
     @State private var showAlert = false
     @State private var alertMessage = ""
     @State private var isAuthenticated = false
+    var authenticationText: String {
+        "Please identify your \(biometryManager.biometryType == .faceID ? "Face ID" : "Touch ID") to access our services"
+    }
+    var legalFootnoteText: String {
+        "Bank of America, N.A Member of FDIC\n© 2025 Bank of America, N.A. All rights reserved."
+    }
     
     var body: some View {
         NavigationStack {
@@ -29,18 +36,18 @@ struct LoginView: View {
                             .font(.system(.largeTitle, weight: .bold))
                             .multilineTextAlignment(.center)
                             .foregroundStyle(.black)
-                        Text("Please identify your Face ID to access ou services")
+                        Text(authenticationText)
                             .font(.system(size: 12))
                             .foregroundStyle(.gray)
                             .padding(.bottom, 40)
                         Button {
-                            authetificateUser()
+                            autheticateUser()
                         } label: {
                             HStack {
-                                Image(systemName: "faceid")
+                                Image(systemName: biometryManager.biometryType == .faceID ? "faceid" : "touchid")
                                     .font(.title2)
                                     .foregroundStyle(.white)
-                                Text("Use Face ID")
+                                Text(biometryManager.biometryType == .faceID ? "Use Face ID" : "Use Touch ID")
                                     .font(.title2)
                                     .foregroundStyle(.white)
                             }
@@ -59,10 +66,11 @@ struct LoginView: View {
                     .offset(y: -90)
                     Spacer()
                     
-                    Text("Bank of America, N.A Member of FDIC\n© 2025 Bank of America, N.A. All rights reserved.")
+                    Text(legalFootnoteText)
                         .font(.footnote)
                         .foregroundStyle(.gray)
                         .multilineTextAlignment(.center)
+                        .padding(.bottom, 5)
                 }
                 .navigationDestination(isPresented: $isAuthenticated) {
                     DashboardView()
@@ -74,12 +82,12 @@ struct LoginView: View {
         }
     }
     
-    private func authetificateUser() {
+    private func autheticateUser() {
         LocalAuthManager.shared.authenticateUser { success, message in
             if success {
                 isAuthenticated = true
             } else {
-                alertMessage = message ?? "Authentification failed."
+                alertMessage = message ?? "Authentication failed."
                 showAlert = true
             }
         }
