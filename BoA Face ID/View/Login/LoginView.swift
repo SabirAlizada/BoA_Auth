@@ -6,17 +6,25 @@
 //
 
 import SwiftUI
+import LocalAuthentication
 
 struct LoginView: View {
     @StateObject private var biometryManager = BiometryManager()
-    @State private var showAlert = false
+    @State private var showPasscodeView = false
     @State private var alertMessage = ""
     @State private var isAuthenticated = false
+    
     var authenticationText: String {
         "Please identify your \(biometryManager.biometryType == .faceID ? "Face ID" : "Touch ID") to access our services"
     }
     var legalFootnoteText: String {
         "Bank of America, N.A Member of FDIC\n© 2025 Bank of America, N.A. All rights reserved."
+    }
+    var loginButtonText: String {
+        biometryManager.biometryType == .faceID ? "Use Face ID" : "Use Touch ID"
+    }
+    var loginButtonIcon: String {
+        biometryManager.biometryType == .faceID ? "faceid" : "touchid"
     }
     
     var body: some View {
@@ -29,6 +37,7 @@ struct LoginView: View {
                         .scaledToFit()
                         .frame(width: 240, height: 80)
                         .padding(.top, 40)
+                    
                     Spacer()
                     
                     VStack(spacing: 16) {
@@ -40,14 +49,15 @@ struct LoginView: View {
                             .font(.system(size: 12))
                             .foregroundStyle(.gray)
                             .padding(.bottom, 40)
+                        
                         Button {
-                            autheticateUser()
+                            authenticateUser()
                         } label: {
                             HStack {
-                                Image(systemName: biometryManager.biometryType == .faceID ? "faceid" : "touchid")
+                                Image(systemName: loginButtonIcon)
                                     .font(.title2)
                                     .foregroundStyle(.white)
-                                Text(biometryManager.biometryType == .faceID ? "Use Face ID" : "Use Touch ID")
+                                Text(loginButtonText)
                                     .font(.title2)
                                     .foregroundStyle(.white)
                             }
@@ -64,6 +74,7 @@ struct LoginView: View {
                     .shadow(radius: 5)
                     .padding(24)
                     .offset(y: -90)
+                    
                     Spacer()
                     
                     Text(legalFootnoteText)
@@ -76,25 +87,38 @@ struct LoginView: View {
                     DashboardView()
                 }
             }
-            .alert(isPresented: $showAlert) {
+            .fullScreenCover(isPresented: $showPasscodeView) {
+                PasscodeView(isAuthenticated: $isAuthenticated)
+            }
+            .alert(isPresented: Binding<Bool>(
+                get: { !alertMessage.isEmpty && !showPasscodeView },
+                set: { _ in alertMessage = "" }
+            )) {
                 Alert(title: Text("Authentication Failed"), message: Text(alertMessage), dismissButton: .default(Text("OK")))
             }
         }
     }
     
-    private func autheticateUser() {
-        LocalAuthManager.shared.authenticateUser { success, message in
+    
+    private func authenticateUser() {
+        AuthManager.shared.authenticateUser { success, message in
+            print("Authentication callback triggered") // Debug print to confirm async callback executes
+            
             if success {
                 isAuthenticated = true
             } else {
                 alertMessage = message ?? "Authentication failed."
-                showAlert = true
+                print("Authentication failed: \(alertMessage)")
+                
+                switch message {
+                    case "User chose to enter passcode", "Biometric authentication is unavailable", "User tapped the fallback button":
+                        showPasscodeView = true
+                    case "Biometric authentication is not set up", "Biometry not enrolled":
+                        alertMessage = "Touch ID is not set up. Please enable it in Settings."
+                    default:
+                        break
+                }
             }
         }
     }
 }
-
-#Preview {
-    LoginView()
-}
-
