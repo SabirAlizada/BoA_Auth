@@ -51,7 +51,8 @@ struct LoginView: View {
                             .padding(.bottom, 40)
                         
                         Button {
-                            authenticateUser()
+                           // authenticateUser()
+                            showPasscodeView = true
                         } label: {
                             HStack {
                                 Image(systemName: loginButtonIcon)
