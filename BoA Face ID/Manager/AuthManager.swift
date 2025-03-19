@@ -4,12 +4,14 @@
 //
 //  Created by Sabir Alizada on 13.03.25.
 //
+//  This file manages user authentication using biometrics (Face ID / Touch ID).
 
 import LocalAuthentication
 
 class AuthManager {
     static let shared = AuthManager()
     
+    // Manages authentication using biometric methods.
     func authenticateUser(completion: @escaping (Bool, String?) -> Void) {
         let context = LAContext()
         context.localizedFallbackTitle = "Use passcode instead"
@@ -23,7 +25,7 @@ class AuthManager {
         
         let biometryType = context.biometryType
         
-        // Validate if biometrics are enrolled
+        // Validate if biometrics are enrolled on the device
         guard !isBiometryNotEnrolled(error) else {
             completion(false, "Biometric autentication is not set up. Please enable it in Settings.")
             return
@@ -47,6 +49,7 @@ class AuthManager {
             return "Biometry is not available"
         }
         
+        // Converts an LAError to a user-friendly error message
         switch error.code {
             case .userCancel:
                 return "Authentication cancelled"
@@ -66,18 +69,19 @@ class AuthManager {
     }
 }
 
-// Manages the device's biometric capability
+// Observes and reports the device's biometric capability.
 class BiometryManager: ObservableObject {
     @Published var biometryType: LABiometryType = .none
     
     init() {
-        self.updateBioemetryType()
+        self.updateBiometryType()
     }
     
-    private func updateBioemetryType() {
+    private func updateBiometryType() {
         let context = LAContext()
         var error: NSError?
         
+        // Check if the device supports biometric authentication.
         if context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &error) {
             DispatchQueue.main.async {
                 self.biometryType = context.biometryType

@@ -4,11 +4,12 @@
 //
 //  Created by Sabir Alizada on 13.03.25.
 //
+// Main dashboard, including a greeting,
+// a grid of bank features, and a list of recent transactions.
 
 import SwiftUI
 
 struct DashboardView: View {
-    
     var body: some View {
         NavigationStack {
             ScrollView {
@@ -19,11 +20,18 @@ struct DashboardView: View {
                         .foregroundStyle(.gray)
                         .padding(.horizontal)
                     
-                    LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())],spacing: 20) {
+                    LazyVGrid(
+                        columns: [
+                            GridItem(.flexible()), GridItem(.flexible()),
+                        ], spacing: 20
+                    ) {
                         BankFeatureCardView(icon: "cards_icon", title: "Cards")
-                        BankFeatureCardView(icon: "transactions_icon", title: "Transactions")
-                        BankFeatureCardView(icon: "payments_icon", title: "Payments")
-                        BankFeatureCardView(icon: "investments_icon", title: "Investements")
+                        BankFeatureCardView(
+                            icon: "transactions_icon", title: "Transactions")
+                        BankFeatureCardView(
+                            icon: "payments_icon", title: "Payments")
+                        BankFeatureCardView(
+                            icon: "investments_icon", title: "Investments")
                     }
                     .padding()
                     
@@ -33,34 +41,37 @@ struct DashboardView: View {
                             .fontWeight(.semibold)
                             .padding(.horizontal)
                         
-                        List(MockData.transactions) { transaction in
-                            TransactionRow(amount: transaction.amount, category: transaction.category, date: transaction.date)
+                        LazyVStack(alignment: .leading, spacing: 10) {
+                            ForEach(MockData.transactions) { transaction in
+                                TransactionRow(
+                                    amount: transaction.amount,
+                                    category: transaction.category,
+                                    date: transaction.date)
+                            }
                         }
-                        .frame(height: 350)
+                        .padding(.horizontal)
+                    }
+                    .padding(.top, 20)
+                }
+                .navigationTitle("Dashboard")
+                .toolbar {
+                    ToolbarItem(placement: .topBarTrailing) {
+                        // TODO: Implement settings action
+                        Button(action: {}) {
+                            Image(systemName: "gearshape.fill")
+                                .foregroundStyle(Color.mainBlue)
+                        }
+                    }
+                    ToolbarItem(placement: .topBarLeading) {
+                        // TODO: Implement help action
+                        Button(action: {}) {
+                            Image(systemName: "questionmark.bubble")
+                                .foregroundStyle(Color.mainBlue)
+                        }
                     }
                 }
-                .padding(.top, 20)
+                .navigationBarBackButtonHidden(true)
             }
-            .navigationTitle("Dashboard")
-            .toolbar {
-                ToolbarItem(placement: .topBarTrailing) {
-                    Button(action: {}) {
-                        Image(systemName: "gearshape.fill")
-                            .foregroundStyle(Color.mainBlue)
-                    }
-                }
-                ToolbarItem(placement: .topBarLeading) {
-                    Button(action: {}) {
-                        Image(systemName: "questionmark.bubble")
-                            .foregroundStyle(Color.mainBlue)
-                    }
-                }
-            }
-            .navigationBarBackButtonHidden(true)
         }
     }
-}
-
-#Preview {
-    DashboardView()
 }

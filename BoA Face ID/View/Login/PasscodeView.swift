@@ -101,6 +101,7 @@ struct PasscodeView: View {
                         
                         Spacer()
                     }
+                    // TODO: Implement Forgot passcode action
                     Button("Forgot passcode?") {}
                         .font(.subheadline)
                         .foregroundStyle(.thinMaterial)
