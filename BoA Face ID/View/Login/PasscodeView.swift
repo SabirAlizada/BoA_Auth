@@ -19,6 +19,7 @@ struct PasscodeView: View {
         biometryManager.biometryType == .faceID ? "faceid" : "touchid"
     }
     
+    // MARK: Correct passcode is here
     private let correctPasscode: String = "1234"
     
     var body: some View {
