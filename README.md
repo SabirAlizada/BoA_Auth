@@ -18,7 +18,10 @@ The app is designed to showcase best practices in iOS development and code archi
   The project is structured to separate concerns (e.g., authentication logic, UI views, and biometric management) following best practices.  
 
 - **Error Handling**  
-  User-friendly error messages inform the user if authentication fails or if biometrics are not configured.  
+  User-friendly error messages inform the user if authentication fails or if biometrics are not configured.
+
+- **Testability**  
+  The code is structured to allow easy unit testing and UI testing, with dependency injection and launch arguments to simulate various authentication scenarios.
 
 ## Technology Stack
 
@@ -79,4 +82,4 @@ The app is designed to showcase best practices in iOS development and code archi
   Provides clear error messages and gracefully handles fallback scenarios.  
 
 - **State Management**  
-  Uses SwiftUI’s state and Combine patterns for reactive UI updates.  
+  Uses SwiftUI’s state and Combine patterns for reactive UI updates.
