@@ -1,6 +1,6 @@
 //
 //  ContentView.swift
-//  BoA Face ID
+//  BoA Auth
 //
 //  Created by Sabir Alizada on 13.03.25.
 //
@@ -11,8 +11,4 @@ struct ContentView: View {
     var body: some View {
         LoginView()
     }
-}
-
-#Preview {
-    ContentView()
 }

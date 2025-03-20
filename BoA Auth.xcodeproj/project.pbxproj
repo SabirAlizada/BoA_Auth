@@ -24,25 +24,25 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		038C75962D83452C00BB8937 /* BoA Face ID.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "BoA Face ID.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		038C75A62D83452E00BB8937 /* BoA Face IDTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "BoA Face IDTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		038C75B02D83452F00BB8937 /* BoA Face IDUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "BoA Face IDUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		038C75962D83452C00BB8937 /* BoA Auth.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "BoA Auth.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		038C75A62D83452E00BB8937 /* BoA AuthTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "BoA AuthTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		038C75B02D83452F00BB8937 /* BoA AuthUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "BoA AuthUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		038C75982D83452C00BB8937 /* BoA Face ID */ = {
+		038C75982D83452C00BB8937 /* BoA Auth */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			path = "BoA Face ID";
+			path = "BoA Auth";
 			sourceTree = "<group>";
 		};
-		038C75A92D83452E00BB8937 /* BoA Face IDTests */ = {
+		038C75A92D83452E00BB8937 /* BoA AuthTests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			path = "BoA Face IDTests";
+			path = "BoA AuthTests";
 			sourceTree = "<group>";
 		};
-		038C75B32D83452F00BB8937 /* BoA Face IDUITests */ = {
+		038C75B32D83452F00BB8937 /* BoA AuthUITests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			path = "BoA Face IDUITests";
+			path = "BoA AuthUITests";
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -75,9 +75,9 @@
 		038C758D2D83452C00BB8937 = {
 			isa = PBXGroup;
 			children = (
-				038C75982D83452C00BB8937 /* BoA Face ID */,
-				038C75A92D83452E00BB8937 /* BoA Face IDTests */,
-				038C75B32D83452F00BB8937 /* BoA Face IDUITests */,
+				038C75982D83452C00BB8937 /* BoA Auth */,
+				038C75A92D83452E00BB8937 /* BoA AuthTests */,
+				038C75B32D83452F00BB8937 /* BoA AuthUITests */,
 				038C75972D83452C00BB8937 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -85,9 +85,9 @@
 		038C75972D83452C00BB8937 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				038C75962D83452C00BB8937 /* BoA Face ID.app */,
-				038C75A62D83452E00BB8937 /* BoA Face IDTests.xctest */,
-				038C75B02D83452F00BB8937 /* BoA Face IDUITests.xctest */,
+				038C75962D83452C00BB8937 /* BoA Auth.app */,
+				038C75A62D83452E00BB8937 /* BoA AuthTests.xctest */,
+				038C75B02D83452F00BB8937 /* BoA AuthUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -95,9 +95,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		038C75952D83452C00BB8937 /* BoA Face ID */ = {
+		038C75952D83452C00BB8937 /* BoA Auth */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 038C75BA2D83452F00BB8937 /* Build configuration list for PBXNativeTarget "BoA Face ID" */;
+			buildConfigurationList = 038C75BA2D83452F00BB8937 /* Build configuration list for PBXNativeTarget "BoA Auth" */;
 			buildPhases = (
 				038C75922D83452C00BB8937 /* Sources */,
 				038C75932D83452C00BB8937 /* Frameworks */,
@@ -108,18 +108,18 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
-				038C75982D83452C00BB8937 /* BoA Face ID */,
+				038C75982D83452C00BB8937 /* BoA Auth */,
 			);
-			name = "BoA Face ID";
+			name = "BoA Auth";
 			packageProductDependencies = (
 			);
 			productName = "BoA Face ID";
-			productReference = 038C75962D83452C00BB8937 /* BoA Face ID.app */;
+			productReference = 038C75962D83452C00BB8937 /* BoA Auth.app */;
 			productType = "com.apple.product-type.application";
 		};
-		038C75A52D83452E00BB8937 /* BoA Face IDTests */ = {
+		038C75A52D83452E00BB8937 /* BoA AuthTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 038C75BD2D83452F00BB8937 /* Build configuration list for PBXNativeTarget "BoA Face IDTests" */;
+			buildConfigurationList = 038C75BD2D83452F00BB8937 /* Build configuration list for PBXNativeTarget "BoA AuthTests" */;
 			buildPhases = (
 				038C75A22D83452E00BB8937 /* Sources */,
 				038C75A32D83452E00BB8937 /* Frameworks */,
@@ -131,18 +131,18 @@
 				038C75A82D83452E00BB8937 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
-				038C75A92D83452E00BB8937 /* BoA Face IDTests */,
+				038C75A92D83452E00BB8937 /* BoA AuthTests */,
 			);
-			name = "BoA Face IDTests";
+			name = "BoA AuthTests";
 			packageProductDependencies = (
 			);
 			productName = "BoA Face IDTests";
-			productReference = 038C75A62D83452E00BB8937 /* BoA Face IDTests.xctest */;
+			productReference = 038C75A62D83452E00BB8937 /* BoA AuthTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		038C75AF2D83452F00BB8937 /* BoA Face IDUITests */ = {
+		038C75AF2D83452F00BB8937 /* BoA AuthUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 038C75C02D83452F00BB8937 /* Build configuration list for PBXNativeTarget "BoA Face IDUITests" */;
+			buildConfigurationList = 038C75C02D83452F00BB8937 /* Build configuration list for PBXNativeTarget "BoA AuthUITests" */;
 			buildPhases = (
 				038C75AC2D83452F00BB8937 /* Sources */,
 				038C75AD2D83452F00BB8937 /* Frameworks */,
@@ -154,13 +154,13 @@
 				038C75B22D83452F00BB8937 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
-				038C75B32D83452F00BB8937 /* BoA Face IDUITests */,
+				038C75B32D83452F00BB8937 /* BoA AuthUITests */,
 			);
-			name = "BoA Face IDUITests";
+			name = "BoA AuthUITests";
 			packageProductDependencies = (
 			);
 			productName = "BoA Face IDUITests";
-			productReference = 038C75B02D83452F00BB8937 /* BoA Face IDUITests.xctest */;
+			productReference = 038C75B02D83452F00BB8937 /* BoA AuthUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -186,7 +186,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 038C75912D83452C00BB8937 /* Build configuration list for PBXProject "BoA Face ID" */;
+			buildConfigurationList = 038C75912D83452C00BB8937 /* Build configuration list for PBXProject "BoA Auth" */;
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -200,9 +200,9 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				038C75952D83452C00BB8937 /* BoA Face ID */,
-				038C75A52D83452E00BB8937 /* BoA Face IDTests */,
-				038C75AF2D83452F00BB8937 /* BoA Face IDUITests */,
+				038C75952D83452C00BB8937 /* BoA Auth */,
+				038C75A52D83452E00BB8937 /* BoA AuthTests */,
+				038C75AF2D83452F00BB8937 /* BoA AuthUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -258,12 +258,12 @@
 /* Begin PBXTargetDependency section */
 		038C75A82D83452E00BB8937 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 038C75952D83452C00BB8937 /* BoA Face ID */;
+			target = 038C75952D83452C00BB8937 /* BoA Auth */;
 			targetProxy = 038C75A72D83452E00BB8937 /* PBXContainerItemProxy */;
 		};
 		038C75B22D83452F00BB8937 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 038C75952D83452C00BB8937 /* BoA Face ID */;
+			target = 038C75952D83452C00BB8937 /* BoA Auth */;
 			targetProxy = 038C75B12D83452F00BB8937 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -395,10 +395,12 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"BoA Face ID/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"BoA Auth/Preview Content\"";
 				DEVELOPMENT_TEAM = JMX62HVZL7;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "BoA-Auth-Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "BoA Auth";
 				INFOPLIST_KEY_LSApplicationCategoryType = "";
 				INFOPLIST_KEY_NSFaceIDUsageDescription = "Face ID is required to access the dashboard";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -412,7 +414,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.sabir.BoA-Face-ID";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.sabir.BoA-Auth";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -431,10 +433,12 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"BoA Face ID/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"BoA Auth/Preview Content\"";
 				DEVELOPMENT_TEAM = JMX62HVZL7;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "BoA-Auth-Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "BoA Auth";
 				INFOPLIST_KEY_LSApplicationCategoryType = "";
 				INFOPLIST_KEY_NSFaceIDUsageDescription = "Face ID is required to access the dashboard";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -448,7 +452,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.sabir.BoA-Face-ID";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.sabir.BoA-Auth";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -475,7 +479,7 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BoA Face ID.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/BoA Face ID";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BoA Auth.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/BoA Auth";
 			};
 			name = Debug;
 		};
@@ -494,7 +498,7 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BoA Face ID.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/BoA Face ID";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BoA Auth.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/BoA Auth";
 			};
 			name = Release;
 		};
@@ -535,7 +539,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		038C75912D83452C00BB8937 /* Build configuration list for PBXProject "BoA Face ID" */ = {
+		038C75912D83452C00BB8937 /* Build configuration list for PBXProject "BoA Auth" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				038C75B82D83452F00BB8937 /* Debug */,
@@ -544,7 +548,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		038C75BA2D83452F00BB8937 /* Build configuration list for PBXNativeTarget "BoA Face ID" */ = {
+		038C75BA2D83452F00BB8937 /* Build configuration list for PBXNativeTarget "BoA Auth" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				038C75BB2D83452F00BB8937 /* Debug */,
@@ -553,7 +557,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		038C75BD2D83452F00BB8937 /* Build configuration list for PBXNativeTarget "BoA Face IDTests" */ = {
+		038C75BD2D83452F00BB8937 /* Build configuration list for PBXNativeTarget "BoA AuthTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				038C75BE2D83452F00BB8937 /* Debug */,
@@ -562,7 +566,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		038C75C02D83452F00BB8937 /* Build configuration list for PBXNativeTarget "BoA Face IDUITests" */ = {
+		038C75C02D83452F00BB8937 /* Build configuration list for PBXNativeTarget "BoA AuthUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				038C75C12D83452F00BB8937 /* Debug */,

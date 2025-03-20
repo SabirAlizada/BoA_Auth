@@ -1,9 +1,14 @@
 //
 //  LoginView.swift
-//  BoA Face ID
+//  Boa Auth
 //
 //  Created by Sabir Alizada on 13.03.25.
 //
+//  This view handles the login screen for the app. It shows a greeting,
+//  instructs the user to authenticate using biometrics (Face ID or Touch ID),
+//  and navigates to the DashboardView upon successful authentication.
+//  If biometric authentication fails or the user opts for a fallback,
+//  it presents a PasscodeView for further authentication.
 
 import SwiftUI
 import LocalAuthentication
@@ -83,13 +88,16 @@ struct LoginView: View {
                         .multilineTextAlignment(.center)
                         .padding(.bottom, 5)
                 }
+                // When authentication is successful, navigate to DashboardView.
                 .navigationDestination(isPresented: $isAuthenticated) {
                     DashboardView()
                 }
             }
+            // Present the custom PasscodeView as a full-screen cover if pressed to use passcode.
             .fullScreenCover(isPresented: $showPasscodeView) {
                 PasscodeView(isAuthenticated: $isAuthenticated)
             }
+            // Display an alert for authentication errors.
             .alert(isPresented: Binding<Bool>(
                 get: { !alertMessage.isEmpty && !showPasscodeView },
                 set: { _ in alertMessage = "" }
@@ -99,10 +107,9 @@ struct LoginView: View {
         }
     }
     
-    
+    // Initiates biometric authentication and handles fallback to passcode if necessary.
     private func authenticateUser() {
         AuthManager.shared.authenticateUser { success, message in
-            print("Authentication callback triggered") // Debug print to confirm async callback executes
             
             if success {
                 isAuthenticated = true

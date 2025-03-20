@@ -1,6 +1,6 @@
 //
-//  BoA_Face_IDApp.swift
-//  BoA Face ID
+//  BoA_AuthApp.swift
+//  BoA Auth
 //
 //  Created by Sabir Alizada on 13.03.25.
 //
@@ -8,7 +8,7 @@
 import SwiftUI
 
 @main
-struct BoA_Face_IDApp: App {
+struct BoA_AuthApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()

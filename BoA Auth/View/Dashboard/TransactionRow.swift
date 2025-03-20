@@ -1,6 +1,6 @@
 //
 //  TransactionRow.swift
-//  BoA Face ID
+//  Boa Auth
 //
 //  Created by Sabir Alizada on 13.03.25.
 //
