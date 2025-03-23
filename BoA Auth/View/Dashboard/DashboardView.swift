@@ -26,12 +26,9 @@ struct DashboardView: View {
                         ], spacing: 20
                     ) {
                         BankFeatureCardView(icon: "cards_icon", title: "Cards")
-                        BankFeatureCardView(
-                            icon: "transactions_icon", title: "Transactions")
-                        BankFeatureCardView(
-                            icon: "payments_icon", title: "Payments")
-                        BankFeatureCardView(
-                            icon: "investments_icon", title: "Investments")
+                        BankFeatureCardView(icon: "transactions_icon", title: "Transactions")
+                        BankFeatureCardView(icon: "payments_icon", title: "Payments")
+                        BankFeatureCardView(icon: "investments_icon", title: "Investments")
                     }
                     .padding()
                     
@@ -54,16 +51,16 @@ struct DashboardView: View {
                     .padding(.top, 20)
                 }
                 .navigationTitle("Dashboard")
+                
+                // Placeholder toolbar buttons for future functionality
                 .toolbar {
                     ToolbarItem(placement: .topBarTrailing) {
-                        // TODO: Implement settings action
                         Button(action: {}) {
                             Image(systemName: "gearshape.fill")
                                 .foregroundStyle(Color.mainBlue)
                         }
                     }
                     ToolbarItem(placement: .topBarLeading) {
-                        // TODO: Implement help action
                         Button(action: {}) {
                             Image(systemName: "questionmark.bubble")
                                 .foregroundStyle(Color.mainBlue)
