@@ -76,24 +76,19 @@ class AuthManager {
 // Observes and reports the device's biometric capability.
 class BiometryManager: ObservableObject {
     @Published var biometryType: LABiometryType = .none
-    
     init() {
-        self.updateBiometryType()
+        updateBiometryType()
     }
     
+    // Checks if the device supports biometric authentication.
     private func updateBiometryType() {
         let context = LAContext()
         var error: NSError?
         
-        // Checks if the device supports biometric authentication.
         if context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &error) {
-            DispatchQueue.main.async {
-                self.biometryType = context.biometryType
-            }
-        } else if error?.code == LAError.biometryNotEnrolled.rawValue {
-            DispatchQueue.main.async {
-                self.biometryType = context.biometryType
-            }
+            self.biometryType = context.biometryType
+        } else {
+            self.biometryType = .none
         }
     }
 }

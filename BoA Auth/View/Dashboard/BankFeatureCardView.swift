@@ -3,7 +3,7 @@
 //  Boa Auth
 //
 //  Created by Sabir Alizada on 13.03.25.
-//
+//  View used for presenting a grid with of features
 
 import SwiftUI
 

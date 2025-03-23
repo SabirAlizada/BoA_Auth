@@ -3,24 +3,15 @@
 //  Boa Auth
 //
 //  Created by Sabir Alizada on 14.03.25.
-//
+// This view represents the passcode entry interface for authentication. It handles secure passcode input, biometric authentication button,
+// and lockout mechanism after multiple failed attempts. The view uses a PasscodeViewModel to manage authentication logic.
 
 import SwiftUI
 
 struct PasscodeView: View {
     @Binding var isAuthenticated: Bool
-    @State private var enteredPasscode: String = ""
-    @State private var showError: Bool = false
+    @StateObject private var viewModel = PasscodeViewModel()
     @FocusState private var isKeyboardFocused: Bool
-    @StateObject private var biometryManager = BiometryManager()
-    @State private var alertMessage = ""
-    
-    var bimetricButtonIcon: String {
-        biometryManager.biometryType == .faceID ? "faceid" : "touchid"
-    }
-    
-    // MARK: Correct passcode is here
-    private let correctPasscode: String = "1234"
     
     var body: some View {
         NavigationStack {
@@ -34,7 +25,7 @@ struct PasscodeView: View {
                         .foregroundStyle(.white)
                         .padding(.bottom, 20)
                     
-                    SecureField("••••", text: $enteredPasscode)
+                    SecureField("••••", text: $viewModel.enteredPasscode)
                         .font(.largeTitle)
                         .padding()
                         .multilineTextAlignment(.center)
@@ -44,65 +35,81 @@ struct PasscodeView: View {
                         .foregroundStyle(.white)
                         .focused($isKeyboardFocused)
                         .onAppear {
-                            DispatchQueue.main.async{
+                            DispatchQueue.main.async {
                                 isKeyboardFocused = true
                             }
+                            viewModel.loadBiometry()
+                            viewModel.checkLockStatus()
                         }
-                        .onChange(of: enteredPasscode) { _, newValue in
-                            // Remove error message as user starts typing
+                        .onChange(of: viewModel.enteredPasscode) {
+                            _, newValue in
+                            
+                            // Removes error message as user starts typing
                             if !newValue.isEmpty {
-                                showError = false
+                                viewModel.showError = false
                             }
+                            
+                            // Limits passcode length to 4 digits
                             if newValue.count > 4 {
-                                enteredPasscode = String(newValue.prefix(4))
+                                viewModel.enteredPasscode = String(newValue.prefix(4))
                             }
                         }
-                    if showError {
+                    
+                    if viewModel.showError {
                         Text("Incorrect passcode. Try again.")
                             .font(.subheadline)
                             .foregroundStyle(.red)
                             .padding(.top, 3)
                     }
-                    HStack(spacing: 40) {
-                        Spacer()
-                        
+                    
+                    ZStack {
                         Button {
-                            if enteredPasscode == correctPasscode {
-                                // Navigate to DashboardView when passcode is correct
-                                isAuthenticated = true
-                            } else {
-                                showError = true
-                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                                    enteredPasscode = ""
+                            viewModel.login { success in
+                                if success {
+                                    isAuthenticated = true
                                 }
                             }
                         } label: {
-                            Text("Login")
-                                .frame(width: 180, height: 50)
-                                .background(enteredPasscode.count == 4 ? Color.backgroundBlue : Color.gray)
-                                .foregroundStyle(.white)
-                                .cornerRadius(10)
+                            Text(
+                                viewModel.isLocked
+                                ? "Try again in \(viewModel.remainingTime)s"
+                                : "Login"
+                            )
+                            .frame(width: 160, height: 50)
+                            .background(
+                                viewModel.enteredPasscode.count == 4
+                                && !viewModel.isLocked
+                                ? Color.backgroundBlue : Color.gray
+                            )
+                            .foregroundStyle(.white)
+                            .cornerRadius(10)
                         }
                         .contentShape(Rectangle())
                         .padding(.top, 10)
-                        .padding(.leading, 80)
-                        .disabled(enteredPasscode.count < 4)
+                        .disabled(
+                            viewModel.enteredPasscode.count < 4 || viewModel.isLocked
+                        )
                         
                         // Biometric authentication button (only shown if device supports biometrics)
-                        if biometryManager.biometryType != .none {
+                        if viewModel.biometryManager.biometryType != .none {
                             Button {
-                                authenticateBiometrics()
+                                viewModel.authenticateBiometrics { success in
+                                    if success {
+                                        isAuthenticated = true
+                                    }
+                                }
                             } label: {
-                                Image(systemName: bimetricButtonIcon)
+                                Image(systemName: viewModel.biometricButtonIcon)
                                     .font(.title)
                                     .foregroundStyle(.white)
                                     .padding(.top, 10)
                             }
+                            .offset(x: 80 + 65, y: 0)
                         }
-                        
-                        Spacer()
                     }
-                    // TODO: Implement Forgot passcode action
+                    .frame(maxWidth: .infinity)
+                    
+                    // Placeholder for future 'Forgot passcode' functionality
                     Button("Forgot passcode?") {}
                         .font(.subheadline)
                         .foregroundStyle(.thinMaterial)
@@ -114,18 +121,9 @@ struct PasscodeView: View {
                 DashboardView()
             }
         }
-    }
-    
-    // Attempts biometric authentication and navigates to the dashboard if successful.
-    private func authenticateBiometrics() {
-        AuthManager.shared.authenticateUser { success, message in
-            if success {
-                self.isAuthenticated = true
-            } else {
-                alertMessage = message ?? "Authentication failed."
-                enteredPasscode = ""
-                showError = false
-            }
+        .onDisappear {
+            // Invalidate the timer when the view disappears to clean up resources
+            viewModel.timer?.invalidate()
         }
     }
 }
